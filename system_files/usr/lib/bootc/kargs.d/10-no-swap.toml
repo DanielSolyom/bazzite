@@ -1,0 +1,3 @@
+# zram-generator's documented off-switch: swap is permanently off on this machine.
+# See docs/no-swap.md.
+kargs = ["systemd.zram=0"]

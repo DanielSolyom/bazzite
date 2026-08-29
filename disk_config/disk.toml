@@ -1,0 +1,9 @@
+# Used ONLY by bootc-image-builder for optional local test builds
+# (`just build-qcow2` / `build-raw` / VM runs). It sizes the root filesystem of
+# the generated disk image — it has zero effect on the published container image
+# or on the real machine's partitions (bootc never repartitions an installed
+# system). Template default; raise minsize if a local VM build ever runs out of
+# space unpacking the (large) Bazzite image.
+[[customizations.filesystem]]
+mountpoint = "/"
+minsize = "20 GiB"

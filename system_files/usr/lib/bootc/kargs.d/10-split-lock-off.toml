@@ -1,0 +1,4 @@
+# Keeps the kernel from throttling games that trigger split-lock detection.
+# Installer-era karg carried into the image so it survives reinstalls.
+# See docs/split-lock.md.
+kargs = ["split_lock_detect=off"]

@@ -1,0 +1,3 @@
+# Unlocks amdgpu's overdrive sysfs interface, required by gpu-undervolt.service.
+# See docs/gpu-undervolt.md.
+kargs = ["amdgpu.ppfeaturemask=0xffffffff"]

@@ -1,0 +1,15 @@
+[Unit]
+Description=RX 9070 XT undervolt (-80 mV) and 265 W power cap
+After=suspend.target
+
+[Service]
+Type=oneshot
+Environment=GPU=/sys/bus/pci/devices/0000:03:00.0
+# Wait for amdgpu's overdrive node (needs amdgpu.ppfeaturemask=0xffffffff karg)
+ExecStartPre=/usr/bin/timeout 60 /usr/bin/bash -c 'until [ -e "$GPU/pp_od_clk_voltage" ]; do sleep 1; done'
+ExecStart=/usr/bin/bash -c 'echo "vo -80" > "$GPU/pp_od_clk_voltage"'
+ExecStart=/usr/bin/bash -c 'echo c > "$GPU/pp_od_clk_voltage"'
+ExecStart=/usr/bin/bash -c 'for c in "$GPU"/hwmon/hwmon*/power1_cap; do echo 265000000 > "$c"; done'
+
+[Install]
+WantedBy=multi-user.target suspend.target
