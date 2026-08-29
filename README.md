@@ -55,7 +55,8 @@ Everything in this table is baked into the image.
 | 🚫 No swap | Swap permanently off via the `systemd.zram=0` kernel arg | [no-swap.md](docs/no-swap.md) |
 | 🔓 Split-lock off | `split_lock_detect=off` so games that trigger split locks aren't throttled | [split-lock.md](docs/split-lock.md) |
 | 🔑 1Password | Flatpak, system install, shipped via first-boot hook | [onepassword.md](docs/onepassword.md) |
-| 🦁 Brave browser | Flatpak browser, shipped via first-boot hook; Firefox blocklisted | [brave.md](docs/brave.md) |
+| 🦁 Brave browser | Flatpak browser, shipped via first-boot hook | [brave.md](docs/brave.md) |
+| 🔓 Passwordless sudo | `wheel` runs `sudo` without a password prompt | [passwordless-sudo.md](docs/passwordless-sudo.md) |
 
 ## 🧹 Removed
 
@@ -78,7 +79,7 @@ Full table with what each item is: [debloat.md](docs/debloat.md).
 | `NetworkManager-wait-online` | service disable |
 | `ds-inhibit` | service disable |
 | handheld leftovers (`bazzite-tdpfix`, PipeWire workarounds, iwd migration) | service disable |
-| Firefox | flatpak blocklist |
+| Firefox | first-boot flatpak uninstall + blocklist |
 
 ## 🗂️ Repo layout
 
@@ -86,7 +87,7 @@ Full table with what each item is: [debloat.md](docs/debloat.md).
 rebase.sh                   curl | sudo bash — trust the key + bootc switch (see top)
 Containerfile               base image + one RUN of build.sh + bootc lint
 build_files/build.sh        all the opinion: system files, identity, signing trust, debloat
-system_files/               copied verbatim onto / (units, kargs, modprobe, hooks)
+system_files/               copied verbatim onto / (units, kargs, modprobe, sudoers, hooks)
 disk_config/                bootc-image-builder config for optional local VM/ISO test builds
 docs/                       one write-up per feature — the source of truth
 Justfile, image-template.env, .github/workflows/build.yml   ublue image-template build machinery

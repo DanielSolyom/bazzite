@@ -1,0 +1,2 @@
+# The wheel group runs sudo without a password prompt.
+%wheel ALL=(ALL) NOPASSWD: ALL

@@ -2,8 +2,10 @@
 
 set -ouex pipefail
 
-### 1 · system files (undervolt unit, kargs, modprobe, NM conf, first-boot hook)
+### 1 · system files (undervolt unit, kargs, modprobe, NM conf, sudoers, first-boot hook)
 cp -avf /ctx/system_files/. /
+chmod 0440 /etc/sudoers.d/10-wheel-nopasswd
+visudo -cf /etc/sudoers.d/10-wheel-nopasswd
 
 ### 2 · identity plumbing (NOT branding) — rollback/rebase tooling tracks our ref
 IMAGE_NAME="bazzite"
@@ -41,7 +43,7 @@ dnf5 remove -y --no-autoremove \
 	libvirt-daemon-driver-libxl libvirt-daemon-driver-lxc \
 	libvirt-daemon-driver-vbox libvirt-daemon-driver-ch
 
-### 5 · flatpak policy — Brave is the browser; Firefox is blocked at the remote
+### 5 · flatpak policy — Brave is the browser; the hook uninstalls Firefox, this blocks it
 echo 'deny org.mozilla.firefox/*' >>/usr/share/ublue-os/flatpak-blocklist
 
 ### 6 · our services

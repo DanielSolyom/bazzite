@@ -37,8 +37,10 @@ Masked: `raid-check.timer` (mdraid scrub).
 
 ## Flatpaks
 
-The image does not preinstall GNOME's starter-app set; the first-boot hook
-installs exactly two apps — Brave and 1Password — and Firefox is deny-listed
-([brave.md](brave.md)). Rebasing an existing machine onto this image changes
-nothing: installed flatpaks are machine state in `/var/lib/flatpak`, which the
-image never touches.
+Flatpaks are machine state in `/var/lib/flatpak`, not image content, so nothing
+about them can be changed at build time. The first-boot hook
+`30-flatpaks.sh` does the work on the machine: it uninstalls
+`org.mozilla.firefox` (which the Bazzite ISO installs) and installs Brave and
+1Password. Firefox is additionally deny-listed so the store cannot bring it
+back ([brave.md](brave.md)). GNOME's starter-app set, also placed by the ISO,
+is left alone.
