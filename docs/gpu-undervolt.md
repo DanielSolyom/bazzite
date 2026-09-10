@@ -1,8 +1,8 @@
 # GPU Undervolt
 
 RX 9070 XT: **−80 mV voltage/frequency offset + 265 W power cap**, applied by a
-oneshot service at boot and re-applied after suspend. Under load this holds stock
-clocks at roughly −55 W package power.
+oneshot service at boot and re-applied after suspend. This configuration avoids
+thermal throttling and sustains higher performance under load on this machine.
 
 ## Components
 

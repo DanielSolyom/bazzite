@@ -34,14 +34,24 @@ mv /tmp/policy.json /etc/containers/policy.json
 # disables first: vgauthd's unit is gone once open-vm-tools is removed
 systemctl disable vboxservice vgauthd sssd mdmonitor lvm2-monitor \
 	iscsi-onboot iscsi-starter ds-inhibit bazzite-tdpfix \
-	pipewire-workaround wireplumber-workaround bazzite-iwd-migration \
-	NetworkManager-wait-online
-systemctl mask raid-check.timer
+	bazzite-iwd-migration NetworkManager-wait-online \
+	pipewire-sysconf wireplumber-sysconf \
+	pipewire-workaround wireplumber-workaround \
+	displaylink inputplumber input-remapper \
+	pcscd.socket
+systemctl mask raid-check.timer \
+	pipewire-sysconf.service wireplumber-sysconf.service \
+	pipewire-workaround.service wireplumber-workaround.service \
+	displaylink.service inputplumber.service input-remapper.service \
+	pcscd.service pcscd.socket
 dnf5 remove -y --no-autoremove \
 	open-vm-tools qemu-guest-agent intel-lpmd ModemManager mcelog \
 	containerd.io 'docker-*' lutris \
 	libvirt-daemon-driver-libxl libvirt-daemon-driver-lxc \
-	libvirt-daemon-driver-vbox libvirt-daemon-driver-ch
+	libvirt-daemon-driver-vbox libvirt-daemon-driver-ch \
+	displaylink libevdi kmod-evdi inputplumber input-remapper \
+	hipcc rocm-hip rocm-device-libs rocm-llvm-static rocm-llvm-devel rocm-llvm \
+	rocm-clang-devel rocm-clang rocm-clang-runtime-devel rocm-libc++-devel rocm-lld
 
 ### 5 · flatpak policy — Brave is the browser; the hook uninstalls Firefox, this blocks it
 echo 'deny org.mozilla.firefox/*' >>/usr/share/ublue-os/flatpak-blocklist

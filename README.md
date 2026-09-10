@@ -30,7 +30,7 @@ ISO → the same command → restore `/home`.
 ## 🖥️ Hardware
 
 ```
-CPU        AMD Ryzen 7 9800X3D (8C/16T)
+CPU        AMD Ryzen 7 9800X3D (8C/16T) · 120 W package power limit
 Board      ASUS X870 MAX GAMING WIFI7 · BIOS 1682 (2026-06-22)
 RAM        64 GB DDR5 — 2× 32 GiB Kingston Fury KF564C32-32 (6400 CL32 @ 6000 MT/s)
 dGPU       AMD Radeon RX 9070 XT (Navi 48) · PCI 0000:03:00.0
@@ -49,7 +49,7 @@ Everything in this table is baked into the image.
 
 | Feature | What it does | Doc |
 |---|---|---|
-| ⚡ GPU undervolt | RX 9070 XT: −80 mV V/F offset + 265 W cap at boot and after suspend; stock clocks at −55 W | [gpu-undervolt.md](docs/gpu-undervolt.md) |
+| ⚡ GPU undervolt | RX 9070 XT: −80 mV V/F offset + 265 W cap at boot and after suspend; avoids thermal throttling under load | [gpu-undervolt.md](docs/gpu-undervolt.md) |
 | 📶 WiFi stability | rtw89 firmware power-save off (kills periodic latency spikes) + NetworkManager powersave off | [wifi-stability.md](docs/wifi-stability.md) |
 | 🌡️ Board sensors | nct6775 module load for fan/temp/voltage readout | [sensors.md](docs/sensors.md) |
 | 🚫 No swap | Swap permanently off via the `systemd.zram=0` kernel arg | [no-swap.md](docs/no-swap.md) |
@@ -71,6 +71,10 @@ Full table with what each item is: [debloat.md](docs/debloat.md).
 | `docker-*`, `containerd.io` | package |
 | `lutris` | package |
 | libvirt xen/lxc/vbox/ch drivers | package |
+| DisplayLink (`displaylink`, `libevdi`, `kmod-evdi`) | packages + service mask |
+| InputPlumber, Input Remapper | packages + service masks |
+| Smart-card daemon (`pcscd`) | service + socket masks |
+| ROCm/HIP development tools | packages; OpenCL runtime retained |
 | `vboxservice`, `vgauthd` | service disable |
 | iSCSI units | service disable |
 | `lvm2-monitor` | service disable |
@@ -78,7 +82,8 @@ Full table with what each item is: [debloat.md](docs/debloat.md).
 | `sssd` (service only) | service disable |
 | `NetworkManager-wait-online` | service disable |
 | `ds-inhibit` | service disable |
-| handheld leftovers (`bazzite-tdpfix`, PipeWire workarounds, iwd migration) | service disable |
+| handheld leftovers (`bazzite-tdpfix`, iwd migration) | service disable |
+| handheld audio configuration and PipeWire/WirePlumber workarounds | service masks |
 | Firefox | first-boot flatpak uninstall + blocklist |
 
 ## 🗂️ Repo layout
