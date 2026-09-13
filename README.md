@@ -49,7 +49,7 @@ Everything in this table is baked into the image.
 
 | Feature | What it does | Doc |
 |---|---|---|
-| ⚡ GPU undervolt | RX 9070 XT: −95 mV V/F offset + 265 W cap at boot and after suspend; avoids thermal throttling under load | [gpu-undervolt.md](docs/gpu-undervolt.md) |
+| ⚡ GPU undervolt | RX 9070 XT: −80 mV V/F offset + 265 W cap at boot and after suspend; avoids thermal throttling under load | [gpu-undervolt.md](docs/gpu-undervolt.md) |
 | 📶 WiFi stability | rtw89 firmware power-save off (kills periodic latency spikes) + NetworkManager powersave off | [wifi-stability.md](docs/wifi-stability.md) |
 | 🌡️ Board sensors | nct6775 module load for fan/temp/voltage readout | [sensors.md](docs/sensors.md) |
 | 🚫 No swap | Swap permanently off via the `systemd.zram=0` kernel arg | [no-swap.md](docs/no-swap.md) |

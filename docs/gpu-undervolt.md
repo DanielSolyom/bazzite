@@ -1,6 +1,6 @@
 # GPU Undervolt
 
-RX 9070 XT: **−95 mV voltage/frequency offset + 265 W power cap**, applied by a
+RX 9070 XT: **−80 mV voltage/frequency offset + 265 W power cap**, applied by a
 oneshot service at boot and re-applied after suspend. This configuration avoids
 thermal throttling and sustains higher performance under load on this machine.
 
@@ -16,7 +16,7 @@ thermal throttling and sustains higher performance under load on this machine.
 - Addresses the GPU **by PCI path** (`/sys/bus/pci/devices/0000:03:00.0`) — never by
   card index, because the iGPU exposes a decoy overdrive node.
 - Waits up to 60 s for the OD node (amdgpu can be slow after resume), then writes the
-  RDNA4 sequence: `vo -95` → `c` (commit) into `pp_od_clk_voltage`, and the cap in µW
+  RDNA4 sequence: `vo -80` → `c` (commit) into `pp_od_clk_voltage`, and the cap in µW
   into every `hwmon/*/power1_cap`.
 - `WantedBy=suspend.target` + `After=suspend.target` starts the unit when the target
   completes, i.e. on resume.
@@ -26,6 +26,6 @@ thermal throttling and sustains higher performance under load on this machine.
 
 ```bash
 systemctl status gpu-undervolt --no-pager | tail -3
-grep VDDGFX /sys/bus/pci/devices/0000:03:00.0/pp_od_clk_voltage   # OD_VDDGFX_OFFSET: -95mV
+grep VDDGFX /sys/bus/pci/devices/0000:03:00.0/pp_od_clk_voltage   # OD_VDDGFX_OFFSET: -80mV
 cat /sys/bus/pci/devices/0000:03:00.0/hwmon/hwmon*/power1_cap      # 265000000
 ```
