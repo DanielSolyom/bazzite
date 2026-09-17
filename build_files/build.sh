@@ -33,7 +33,7 @@ mv /tmp/policy.json /etc/containers/policy.json
 ### 4 · debloat — see docs/debloat.md
 # disables first: vgauthd's unit is gone once open-vm-tools is removed
 systemctl disable vboxservice vgauthd sssd mdmonitor lvm2-monitor \
-	iscsi-onboot iscsi-starter ds-inhibit bazzite-tdpfix \
+	iscsi-onboot iscsi-starter ds-inhibit \
 	bazzite-iwd-migration NetworkManager-wait-online \
 	pipewire-sysconf wireplumber-sysconf \
 	pipewire-workaround wireplumber-workaround \

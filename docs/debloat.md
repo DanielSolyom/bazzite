@@ -37,7 +37,6 @@ masked. The ROCm OpenCL runtime and its shared libraries stay installed.
 | `sssd` | enterprise auth daemon (service only; the package stays — PAM references pam_sss) |
 | `NetworkManager-wait-online` | gates network-online.target, can hold boot up to 60 s (disabled, not masked) |
 | `ds-inhibit` | DualSense-trackpad inhibitor |
-| `bazzite-tdpfix` | handheld TDP fixup |
 | `bazzite-iwd-migration` | one-time wifi backend migration |
 
 ## Services masked (`systemctl mask`)

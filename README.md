@@ -82,7 +82,7 @@ Full table with what each item is: [debloat.md](docs/debloat.md).
 | `sssd` (service only) | service disable |
 | `NetworkManager-wait-online` | service disable |
 | `ds-inhibit` | service disable |
-| handheld leftovers (`bazzite-tdpfix`, iwd migration) | service disable |
+| handheld leftovers (iwd migration) | service disable |
 | handheld audio configuration and PipeWire/WirePlumber workarounds | service masks |
 | Firefox | first-boot flatpak uninstall + blocklist |
 
