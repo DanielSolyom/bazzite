@@ -77,9 +77,12 @@ Six numbered sections:
 
 `30-flatpaks.sh` (first-boot hook in `privileged-setup.hooks.d`, the directory
 Bazzite executes): sources `libsetup.sh`, guards with
-`version-script custom-flatpaks privileged 1` so it runs once, then installs
-`com.brave.Browser` + `com.onepassword.OnePassword` system-wide. Idempotent —
-if both are already installed it is a no-op.
+`version-script custom-flatpaks privileged 3` so it runs once per version, then
+uninstalls Firefox, installs `com.brave.Browser` + `com.onepassword.OnePassword`
+system-wide, and applies 1Password's system-wide clipboard override
+([onepassword.md](onepassword.md)). Version 3 runs on fresh installs and when
+an existing installation next runs setup after updating the image. Installs
+and the override are idempotent.
 
 ## Signing
 

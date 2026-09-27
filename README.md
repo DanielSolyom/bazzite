@@ -54,7 +54,7 @@ Everything in this table is baked into the image.
 | 🌡️ Board sensors | nct6775 module load for fan/temp/voltage readout | [sensors.md](docs/sensors.md) |
 | 🚫 No swap | Swap permanently off via the `systemd.zram=0` kernel arg | [no-swap.md](docs/no-swap.md) |
 | 🔓 Split-lock off | `split_lock_detect=off` so games that trigger split locks aren't throttled | [split-lock.md](docs/split-lock.md) |
-| 🔑 1Password | Flatpak, system install, shipped via first-boot hook | [onepassword.md](docs/onepassword.md) |
+| 🔑 1Password | Flatpak, system install with clipboard override, shipped via first-boot hook | [onepassword.md](docs/onepassword.md) |
 | 🦁 Brave browser | Flatpak browser, shipped via first-boot hook | [brave.md](docs/brave.md) |
 | 🔓 Passwordless sudo | `wheel` runs `sudo` without a password prompt | [passwordless-sudo.md](docs/passwordless-sudo.md) |
 
